@@ -1,31 +1,35 @@
 from PIL import Image
 
-
+# Define folder holding images and destination for processed
 folder_path = 'C:\\Users\\ccoon\\OneDrive\\Desktop\\EhrhardtForensic\\ImageProcess\\p22_contact_smaller_frame\\'
+
+# Input file name
 file_name = 'p22_contact_smaller_frame.tif'
 input_file_path = folder_path + file_name
 
+# Create image object via pillow/PIL
 im = Image.open(input_file_path)
 
-# The crop method from the Image module takes four coordinates as input.
-# The right can also be represented as (left+width)
-# and lower can be represented as (upper+height).
+# Define pixel values for upper left coordinates and lower right coordinates
 left_upper_x = 3
 left_upper_y = 67
 right_lower_x = 247
 right_lower_y = 309
 
+# Define bounds of image, max params
 max_x = 5109
 max_y = 2868
 
+# For larger frames we increment with these values
 x_increment = 256
 y_increment = 256
-
-im_ct = 0
 
 row_start_upper_x = left_upper_x
 row_start_lower_y = right_lower_x
 
+im_ct = 0
+
+# Process images until y is out of bounds
 while left_upper_y < max_y:
     im_ct += 1
     coord = (left_upper_x, left_upper_y, right_lower_x, right_lower_y)
